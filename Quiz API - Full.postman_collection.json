@@ -1,0 +1,547 @@
+{
+	"info": {
+		"_postman_id": "5249cb71-f86f-4a91-a346-6f8d32b3e75d",
+		"name": "Quiz API - Full Project (All 3 Sprints)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "29375337"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"mobile\": \"9999999999\",\n  \"role\": \"user\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5100/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5100/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"john@example.com\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5100/api/auth/forgot-password",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"auth",
+								"forgot-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"token\": \"<RESET_TOKEN>\",\n  \"newPassword\": \"newpassword123\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5100/api/auth/reset-password",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <JWT_TOKEN>"
+							}
+						],
+						"url": {
+							"raw": "localhost:5100/api/user/me",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <JWT_TOKEN>"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"New Name\",\n  \"mobile\": \"8888888888\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5100/api/user/me",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quiz & Category",
+			"item": [
+				{
+					"name": "Create Category",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <ADMIN_JWT_TOKEN>"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Math\",\n  \"description\": \"Math related quizzes\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5100/api/categories",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Quiz",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ADMIN_JWT_TOKEN}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Math Basics\",\n  \"category\": \"64edb1a2c1234b4567890def\",\n  \"instructions\": \"Answer all questions carefully.\",\n  \"type\": \"Test\"\n}"
+						},
+						"url": {
+							"raw": "localhost:5100/api/quizzes",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"quizzes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Quiz Details",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ADMIN_JWT_TOKEN}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:5100/api/quizzes",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"quizzes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ADMIN_JWT_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:5100/api/categories/with-quizzes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"categories",
+								"with-quizzes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Questions",
+			"item": [
+				{
+					"name": "Add Question to Quiz",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ADMIN_JWT_TOKEN}}"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"questionIds\": [\"688fcb3854eefd9a679b1a4e\"]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5100/api/quizzes/688fc8db79fdeafca81142a7/questions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"quizzes",
+								"688fc8db79fdeafca81142a7",
+								"questions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Questions",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ADMIN_JWT_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Who is PM of India?\",\n  \"type\": \"MCQ\",\n  \"options\": [\"Narendra Modi\", \"Amit Shah\", \"Yogi\", \"None of them\"],\n  \"answer\": 0,\n  \"time\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5100/api/questions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"questions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Answer Submissions",
+			"item": [
+				{
+					"name": "Submit Answers",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <JWT_TOKEN>"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"quizId\": \"<QUIZ_ID>\",\n  \"answers\": [\n    {\n      \"questionId\": \"<QUESTION_ID>\",\n      \"selectedAnswer\": \"4\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "localhost:5100/api/answers/submit",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"answers",
+								"submit"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User: My Attempts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer <JWT_TOKEN>"
+							}
+						],
+						"url": {
+							"raw": "localhost:5100/api/answers/my",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"answers",
+								"my"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin: All Attempts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ADMIN_JWT_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "localhost:5100/api/answers/all",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"answers",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin: All Attempts by Quiz",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{ADMIN_JWT_TOKEN}}"
+							}
+						],
+						"url": {
+							"raw": "localhost:5100/api/answers/all",
+							"host": [
+								"localhost"
+							],
+							"port": "5100",
+							"path": [
+								"api",
+								"answers",
+								"all"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "jwt_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGZhZjBlMTgxZWQwYTRiYmU5OGIyOSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzU0MjQ5MjY4fQ.jXK70k6cPTBq6bwZMlUk6FYwC4AStKqiXZQI3BvsKPw",
+			"type": "string"
+		},
+		{
+			"key": "ADMIN_JWT_TOKEN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4OGZiOWE1MTgxZWQwYTRiYmU5OGI0MiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc1NDI1MDEyMX0.BN0i5XAuJvtQs--sbM7pSAeWMWfheSQskEtpmvNtS7s",
+			"type": "default"
+		}
+	]
+}
